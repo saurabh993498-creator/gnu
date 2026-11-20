@@ -35,7 +35,17 @@ def db_error(error):
 
 @app.get("/")
 def index():
-    return jsonify(message="Events API")
+    return jsonify(
+        name="Events API",
+        status="ok",
+        endpoints={
+            "list_events": "GET /api/events",
+            "event_details": "GET /api/events/<event_id>",
+            "create_registration": "POST /api/registrations",
+            "user_registrations": "GET /api/me/registrations?user_id=<user_id>",
+            "event_attendees": "GET /api/events/<event_id>/registrations?organizer_id=<organizer_id>",
+        },
+    )
 
 
 @app.get("/api/events")
